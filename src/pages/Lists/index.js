@@ -9,8 +9,6 @@ import {
   TextField,
   Show,
   SimpleShowLayout,
-  FileInput,
-  FileField,
   ImageField,
   ArrayInput,
   SimpleFormIterator,
@@ -25,8 +23,9 @@ export const ListsOfItems = (props) => (
     <Datagrid>
       <TextField source="name" />
       <TextField source="email" />
-      <TextField source="phone" />
-      <Avatar source="image.src" label="Imagem Perfil"/>
+      <TextField source="description" label="Descrição"/>
+      <TextField source="phoneNumber" />
+      <Avatar source="photoURL" label="Imagem Perfil"/>
       <ShowButton label="" />
     </Datagrid>
   </List>
@@ -37,13 +36,17 @@ export const ShowList = (props) => (
     <SimpleShowLayout>
       <TextField source="name" />
       <TextField source="email" />
-      <TextField source="phone" />
-      <ImageField source="image.src" label="Imagem Perfil" />
+      <TextField source="description" label="Descrição"/>
+      <TextField source="phoneNumber" label="Telefone"/>
+      <ImageField source="photoURL" label="Imagem Perfil" />
       <ArrayField source="items">
         <Datagrid>
-            <TextField source="name" />
-            <TextField source="description" />
-            <ImageField source="image.src" label="Imagem" className="image"  />
+          <TextField source="name" />
+          <TextField source="description" />
+          <ImageField source="photoURL" label="Imagem" className="image"  />
+          <TextField source="subscriber.name" label="Assinado por" />
+          <TextField source="subscriber.email" />
+          <ImageField source="subscriber.photoURL" className="image" />
         </Datagrid>
     </ArrayField>
     </SimpleShowLayout>
@@ -60,17 +63,17 @@ export const CreateOrEditList = (props) => (
     <SimpleForm>
       <TextInput source="name" label="Nome"/>
       <TextInput source="email"/>
-      <TextInput source="phone" label="Telefone"/>
-      <FileInput source="image" label="Imagem do dono da lista">
-        <FileField source="src" title="title" />
-      </FileInput>
+      <TextInput source="description" label="Descrição"/>
+      <TextInput source="phoneNumber" label="Telefone"/>
+      <TextInput source="photoURL" title="title" label="Imagem do dono da lista" />
       <ArrayInput source="items">
         <SimpleFormIterator>
-        <TextInput source="name" label="Nome" />
-        <TextInput source="description" label="Descrição"/>
-        <FileInput source="image" label="Imagem do item">
-          <FileField source="src" title="title" />
-        </FileInput>
+          <TextInput source="name" label="Nome" />
+          <TextInput source="description" label="Descrição"/>
+          <TextInput source="photoURL" label="Imagem do item" />
+          <TextInput source="subscriber.name" label="Assinado por" />
+          <TextInput source="subscriber.email" label="Email do assinante" />
+          <TextInput source="subscriber.photoURL" label="Imagem do assinante" />
         </SimpleFormIterator>
       </ArrayInput>
     </SimpleForm>
