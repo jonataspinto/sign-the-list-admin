@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import {
   List,
   Datagrid,
@@ -19,23 +19,23 @@ import { Avatar } from "@material-ui/core"
 
 const ImgAvatar = (props) => {
   const { record, source } = props;
-  let imgSrc = null;
+  const reef = useRef(null);
 
   if (source?.includes('.')) {
     source.split('.').filter(value => Boolean(value)).forEach((current, index) => {
       if(index === 0 ) {
-        imgSrc = record[current]
+        reef.current = record[current]
 
         return;
       }
-      imgSrc = imgSrc[current] 
+      reef.current = reef.current[current] 
       return;
     })
   } else {
-    imgSrc = record[source]
+    reef.current = record[source]
   }
 
-  return (<Avatar src={imgSrc} label="Imagem Perfil"/>)
+  return (<Avatar src={reef.current} label="Imagem Perfil"/>)
 }
 
 export const ListsOfItems = (props) => {
