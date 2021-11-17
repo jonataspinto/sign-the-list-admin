@@ -9,27 +9,50 @@ import {
   TextField,
   Show,
   SimpleShowLayout,
-  ImageField,
   ArrayInput,
   SimpleFormIterator,
   ArrayField,
-  ShowButton
+  ShowButton,
+  required
 } from "react-admin";
 import { Avatar } from "@material-ui/core"
-import "./style.css"
 
-export const ListsOfItems = (props) => (
+const ImgAvatar = (props) => {
+  const { record, source } = props;
+  let imgSrc = null;
+
+  if (source?.includes('.')) {
+    source.split('.').filter(value => Boolean(value)).forEach((current, index) => {
+      if(index === 0 ) {
+        imgSrc = record[current]
+
+        return;
+      }
+      imgSrc = imgSrc[current] 
+      return;
+    })
+  } else {
+    imgSrc = record[source]
+  }
+
+  return (<Avatar src={imgSrc} label="Imagem Perfil"/>)
+}
+
+export const ListsOfItems = (props) => {
+  
+  return (
   <List {...props}>
     <Datagrid>
       <TextField source="name" />
       <TextField source="email" />
+      <TextField source="code" label="Código"/>
       <TextField source="description" label="Descrição"/>
       <TextField source="phoneNumber" />
-      <Avatar source="photoURL" label="Imagem Perfil"/>
+      <ImgAvatar source="photoURL" />
       <ShowButton label="" />
     </Datagrid>
   </List>
-);
+)};
 
 export const ShowList = (props) => (
   <Show {...props}>
@@ -38,15 +61,15 @@ export const ShowList = (props) => (
       <TextField source="email" />
       <TextField source="description" label="Descrição"/>
       <TextField source="phoneNumber" label="Telefone"/>
-      <ImageField source="photoURL" label="Imagem Perfil" />
+      <ImgAvatar source="photoURL" label="Imagem Perfil" />
       <ArrayField source="items">
         <Datagrid>
           <TextField source="name" />
           <TextField source="description" />
-          <ImageField source="photoURL" label="Imagem" className="image"  />
+          <ImgAvatar source="photoURL" label="Imagem" />
           <TextField source="subscriber.name" label="Assinado por" />
-          <TextField source="subscriber.email" />
-          <ImageField source="subscriber.photoURL" className="image" />
+          <TextField source="subscriber.email" label=""/>
+          <ImgAvatar source="subscriber.photoURL" label=""/>
         </Datagrid>
     </ArrayField>
     </SimpleShowLayout>
@@ -62,6 +85,7 @@ export const CreateOrEditList = (props) => (
   <CreateOrEdit {...props}>
     <SimpleForm>
       <TextInput source="name" label="Nome"/>
+      <TextInput source="code" label="Código" validate={[required()]}/>
       <TextInput source="email"/>
       <TextInput source="description" label="Descrição"/>
       <TextInput source="phoneNumber" label="Telefone"/>
