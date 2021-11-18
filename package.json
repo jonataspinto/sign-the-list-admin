@@ -18,7 +18,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "deploy:firebase": "firebase deploy --only hosting:sign-the-list",
+    "deploy:firebase": "firebase deploy --only hosting:sign-the-list-admin",
     "deploy": "yarn build && yarn deploy:firebase",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
