@@ -22,13 +22,13 @@ const ImgAvatar = (props) => {
   const reef = useRef(null);
 
   if (source?.includes('.')) {
-    source.split('.').filter(value => Boolean(value)).forEach((current, index) => {
+    source?.split('.').filter(value => Boolean(value)).forEach((current, index) => {
       if(index === 0 ) {
-        reef.current = record[current]
+        reef.current = record[current] || ""
 
         return;
       }
-      reef.current = reef.current[current] 
+      reef.current = reef.current[current] || ""
       return;
     })
   } else {
