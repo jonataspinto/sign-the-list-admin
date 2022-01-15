@@ -1,9 +1,11 @@
 import { Admin, Resource } from "react-admin";
 import firebaseDataProvider from "ra-data-firebase-client";
+import { emailAndPasswordAuthProvider } from "ra-auth-firebase-client";
 import firebase from "firebase/app";
 import "firebase/database";
+import "firebase/auth";
+import { PlaylistAddCheckOutlined } from "@material-ui/icons";
 import { CreateOrEditList, ShowList, ListsOfItems } from "./pages/Lists";
-import { PlaylistAddCheckOutlined  } from '@material-ui/icons';
 
 firebase.initializeApp({
   apiKey: process.env.REACT_APP_APIKEY,
@@ -18,7 +20,10 @@ firebase.initializeApp({
 const settings = { context: "dev", imagekey: "images", filekey: "files" };
 
 const App = () => (
-  <Admin dataProvider={firebaseDataProvider(firebase, settings)}>
+  <Admin
+    dataProvider={firebaseDataProvider(firebase, settings)}
+    authProvider={emailAndPasswordAuthProvider(firebase)}
+  >
     <Resource
       name="lists"
       list={ListsOfItems}
@@ -27,7 +32,7 @@ const App = () => (
       show={ShowList}
       icon={PlaylistAddCheckOutlined}
       options={{
-        label: "Listas"
+        label: "Listas",
       }}
     />
   </Admin>

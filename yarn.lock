@@ -9911,6 +9911,11 @@ queue-microtask@^1.2.2:
   resolved "https://registry.yarnpkg.com/queue-microtask/-/queue-microtask-1.2.2.tgz#abf64491e6ecf0f38a6502403d4cda04f372dfd3"
   integrity sha512-dB15eXv3p2jDlbOiNLyMabYg1/sXvppd8DP2J3EOCQ0AkuSXCW2tP7mnVouVLJKgUMY6yP0kcQDVpLCN13h4Xg==
 
+ra-auth-firebase-client@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/ra-auth-firebase-client/-/ra-auth-firebase-client-3.0.0.tgz#e3f0445cf772ac471b1f228e0f6be93cfc2551c1"
+  integrity sha512-DWaVbPECMURJ3TRoQztjxQ/7lbUibiPx2x+kg0ztR842FrtlhryCxGM03PypOwaeksQ2s0KEDzDwyrZygxCdug==
+
 ra-core@^3.19.0:
   version "3.19.0"
   resolved "https://registry.yarnpkg.com/ra-core/-/ra-core-3.19.0.tgz#9aa18a6ad794454b9fc38f0413d5d4c68e306d60"
